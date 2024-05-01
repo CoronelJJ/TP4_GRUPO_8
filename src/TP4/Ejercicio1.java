@@ -6,9 +6,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
-import java.awt.event.ActionListener;
+
 import java.awt.Color;
-import java.awt.event.ActionEvent;
+
 import javax.swing.SwingConstants;
 import javax.swing.*;
 import java.awt.event.*;
@@ -120,6 +120,69 @@ public class Ejercicio1 extends JFrame {
 		btnMostrar.setBounds(225, 211, 105, 31);
 		contentPane.add(btnMostrar);
 		
+		
+		txtNombre.addFocusListener(new FocusListener() {
+
+			@Override
+			public void focusGained(FocusEvent arg0) {
+				txtNombre.setBackground(Color.WHITE);
+				
+			}
+
+			@Override
+			public void focusLost(FocusEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+		
+		txtApellido.addFocusListener(new FocusListener() {
+
+			@Override
+			public void focusGained(FocusEvent arg0) {
+				txtApellido.setBackground(Color.WHITE);
+				
+			}
+
+			@Override
+			public void focusLost(FocusEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+		txtTelefono.addFocusListener(new FocusListener() {
+
+			@Override
+			public void focusGained(FocusEvent arg0) {
+				txtTelefono.setBackground(Color.WHITE);
+				
+			}
+
+			@Override
+			public void focusLost(FocusEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+		
+		txtFechaNac.addFocusListener(new FocusListener() {
+
+			@Override
+			public void focusGained(FocusEvent arg0) {
+				txtFechaNac.setBackground(Color.WHITE);
+				
+			}
+
+			@Override
+			public void focusLost(FocusEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
 		
 	
 	}
