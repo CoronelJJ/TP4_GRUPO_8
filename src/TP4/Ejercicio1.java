@@ -29,7 +29,7 @@ public class Ejercicio1 extends JFrame {
 		textField.addKeyListener(new KeyAdapter() {
             public void keyTyped(KeyEvent e) {
                 char caracter = e.getKeyChar();
-                if (!Character.isDigit(caracter)) {
+                if (!Character.isDigit(caracter) && caracter != '/') {
                     e.consume();
                 }
             }
@@ -97,6 +97,7 @@ public class Ejercicio1 extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				 JTextField[] campos = {txtNombre, txtApellido, txtTelefono, txtFechaNac};
 				 boolean campoIncompleto=false;
+				 String datos = "<html><body>Los datos ingresados fueron:<br>";
 				 for (JTextField txt : campos) {
 					 if(txt.getText().trim().isEmpty()) {
 							txt.setBackground(Color.red);
@@ -104,10 +105,12 @@ public class Ejercicio1 extends JFrame {
 							campoIncompleto=true;
 						}else {
 							txt.setBackground(Color.white);
+							datos += txt.getText().trim() + "<br>";
 						}
 				}
 				if(!campoIncompleto) {
-				lblMostrarDatos.setText("Los datos ingresados fueron: "+txtNombre.getText().trim()+" "+txtApellido.getText().trim()+" "+txtTelefono.getText().trim()+" "+txtFechaNac.getText().trim());
+					datos += "</body></html>";
+					lblMostrarDatos.setText(datos);
 				for (JTextField txt : campos) {
 					txt.setText("");
 				}
