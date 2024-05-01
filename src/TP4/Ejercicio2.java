@@ -15,6 +15,8 @@ public class Ejercicio2 extends JFrame {
 	private JTextField txtNota1;
 	private JTextField txtNota2;
 	private JTextField txtNota3;
+	private JTextField txtPromedio;
+	private JTextField txtCondicion;
 
 	public Ejercicio2() {
 		setTitle("Promedio");
@@ -57,5 +59,31 @@ public class Ejercicio2 extends JFrame {
 		txtNota3.setBounds(86, 77, 119, 20);
 		panelNotas.add(txtNota3);
 		txtNota3.setColumns(10);
+		
+		JPanel panelPromedio = new JPanel();
+		panelPromedio.setBorder(new TitledBorder(null, "Notas del estudiante", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panelPromedio.setBounds(28, 188, 294, 98);
+		contentPane.add(panelPromedio);
+		panelPromedio.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Promedio:");
+		lblNewLabel.setBounds(10, 24, 63, 14);
+		panelPromedio.add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("Condicion:");
+		lblNewLabel_1.setBounds(10, 49, 63, 14);
+		panelPromedio.add(lblNewLabel_1);
+		
+		txtPromedio = new JTextField();
+		lblNewLabel.setLabelFor(txtPromedio);
+		txtPromedio.setBounds(83, 21, 86, 20);
+		panelPromedio.add(txtPromedio);
+		txtPromedio.setColumns(10);
+		
+		txtCondicion = new JTextField();
+		lblNewLabel_1.setLabelFor(txtCondicion);
+		txtCondicion.setBounds(83, 46, 86, 20);
+		panelPromedio.add(txtCondicion);
+		txtCondicion.setColumns(10);
 	}
 }
