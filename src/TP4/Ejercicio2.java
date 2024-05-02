@@ -16,6 +16,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import javax.swing.*;
+import java.awt.event.*;
 
 public class Ejercicio2 extends JFrame {
 
@@ -25,6 +27,13 @@ public class Ejercicio2 extends JFrame {
 	private JTextField txtNota3;
 	private JTextField txtPromedio;
 	private JTextField txtCondicion;
+	
+	private void confirmarSalida() {
+        int opcion = JOptionPane.showConfirmDialog(this, "¿Estás seguro de que quieres salir?", "Confirmar Salida", JOptionPane.YES_NO_OPTION);
+        if (opcion == JOptionPane.YES_OPTION) {
+            dispose(); 
+        }
+    }
 
 	public Ejercicio2() {
 		setTitle("Promedio");
@@ -34,6 +43,9 @@ public class Ejercicio2 extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+	
+		
 		
 		JPanel panelNotas = new JPanel();
 		panelNotas.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Notas del estudiante", TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLACK));
@@ -122,12 +134,14 @@ public class Ejercicio2 extends JFrame {
 		panelPromedio.add(lblCondicion);
 		
 		txtPromedio = new JTextField();
+		txtPromedio.setEditable(false);
 		lblPromedio.setLabelFor(txtPromedio);
 		txtPromedio.setBounds(83, 21, 86, 20);
 		panelPromedio.add(txtPromedio);
 		txtPromedio.setColumns(10);
 		
 		txtCondicion = new JTextField();
+		txtCondicion.setEditable(false);
 		lblCondicion.setLabelFor(txtCondicion);
 		txtCondicion.setBounds(83, 46, 86, 20);
 		panelPromedio.add(txtCondicion);
@@ -179,6 +193,13 @@ public class Ejercicio2 extends JFrame {
 		contentPane.add(btnNuevo);
 		
 		JButton btnSalir = new JButton("SALIR");
+		btnSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				confirmarSalida();
+				
+			}
+		});
 		btnSalir.setBounds(370, 125, 110, 30);
 		contentPane.add(btnSalir);
 	}
