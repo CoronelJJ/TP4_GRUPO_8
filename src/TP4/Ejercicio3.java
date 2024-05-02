@@ -1,8 +1,5 @@
 package TP4;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -15,6 +12,10 @@ import javax.swing.JRadioButton;
 import javax.swing.JCheckBox;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.ActionEvent;
 
 public class Ejercicio3 extends JFrame {
 
@@ -86,11 +87,37 @@ public class Ejercicio3 extends JFrame {
 		contentPane.add(lblHoras);
 		
 		txtHoras = new JTextField();
+		txtHoras.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if((c<'0' || c>'9')&& (c!='.')) {
+				e.consume();
+				}
+			}
+		});
 		txtHoras.setBounds(254, 207, 116, 22);
 		contentPane.add(txtHoras);
 		txtHoras.setColumns(10);
 		
 		JButton btnAceptar = new JButton("Aceptar");
+		btnAceptar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				boolean campoIncompleto=false;
+				if(txtHoras.getText().trim().isEmpty()) {
+					txtHoras.setBackground(Color.red);
+					txtHoras.setText("");
+					campoIncompleto=true;}
+				
+				else {
+				txtHoras.setBackground(Color.white);
+				txtHoras.setText("");
+				MensajeEjercicio3 mensaje = new MensajeEjercicio3();
+				mensaje.setVisible(true);
+				
+			}
+			}
+		});
 		btnAceptar.setBounds(291, 259, 97, 25);
 		contentPane.add(btnAceptar);
 	}
