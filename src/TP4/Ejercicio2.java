@@ -1,17 +1,9 @@
 package TP4;
 
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
-import javax.swing.UIManager;
-import java.awt.Color;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -27,6 +19,7 @@ public class Ejercicio2 extends JFrame {
 	private JTextField txtNota3;
 	private JTextField txtPromedio;
 	private JTextField txtCondicion;
+	private JComboBox<String>cbTps;
 	
 	private void confirmarSalida() {
         int opcion = JOptionPane.showConfirmDialog(this, "¿Estás seguro de que quieres salir?", "Confirmar Salida", JOptionPane.YES_NO_OPTION);
@@ -108,12 +101,12 @@ public class Ejercicio2 extends JFrame {
 		panelNotas.add(txtNota3);
 		txtNota3.setColumns(10);
 		
-		JComboBox<String> cbTps = new JComboBox<>();
+		cbTps = new JComboBox<>();
 		cbTps.addItem("Aprobado");
 		cbTps.addItem("Desaprobado");
 		cbTps.setBounds(86, 110, 119, 22);
 		panelNotas.add(cbTps);
-		LlenarComboBox(cbTps);
+		LlenarComboBox();
 		
 		JLabel lblTPS = new JLabel("TPS");
 		lblTPS.setBounds(30, 113, 56, 16);
@@ -150,29 +143,7 @@ public class Ejercicio2 extends JFrame {
 		JButton btnCalcular = new JButton("CALCULAR");
 		btnCalcular.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		int Nota1 = Integer.parseInt(txtNota1.getText());
-        		int Nota2 = Integer.parseInt(txtNota2.getText());
-        		int Nota3 = Integer.parseInt(txtNota3.getText());
-        	if(!cbTps.getSelectedItem().equals("Condicion")) {
-        		if(cbTps.getSelectedItem().equals("Desaprobado")) {
-        			txtCondicion.setText("Libre");        			
-        		}
-        		else if(Nota1<6 || Nota2<6 || Nota3<6) {		
-        				txtCondicion.setText("Libre");	
-    			}
-        		else if(Nota1>=8 && Nota2>=8 && Nota3>=8) {
-        			txtCondicion.setText("Promocionado");	
-    			}
-        		else if((Nota1>=6 && Nota1<=8) && (Nota2>=6 && Nota2<=8) && (Nota3>=6 && Nota3<=8) && cbTps.getSelectedItem().equals("Aprobado")) {
-        			txtCondicion.setText("Regular");
-        		}
-        		else {
-        			txtCondicion.setText("Regular");
-        		}
-        		int Promedio =((Nota1+Nota2+Nota3)/3);
-        		String Prom = String.valueOf(Promedio);
-        		txtPromedio.setText(Prom);
-        	}
+        		Calcular();
         	}
         });
 		btnCalcular.setBounds(370, 43, 110, 30);
@@ -186,7 +157,7 @@ public class Ejercicio2 extends JFrame {
         		txtNota3.setText("");
         		txtCondicion.setText("");
         		txtPromedio.setText("");  
-        		LlenarComboBox(cbTps);
+        		LlenarComboBox();
         	}
         });
 		btnNuevo.setBounds(370, 84, 110, 30);
@@ -203,16 +174,68 @@ public class Ejercicio2 extends JFrame {
 		btnSalir.setBounds(370, 125, 110, 30);
 		contentPane.add(btnSalir);
 	}
-	
-	 private void LlenarComboBox(JComboBox<String> cbTPS) {
+	private void Calcular() {
+		try {
+    		double Nota1=Double.parseDouble(txtNota1.getText());
+    		double Nota2=Double.parseDouble(txtNota2.getText());
+			double Nota3= Double.parseDouble(txtNota3.getText());
+			
+			
+			double notasAlumno[] = new double [3];
+			notasAlumno[0] = Nota1;
+			notasAlumno[1] = Nota2;
+			notasAlumno[2] = Nota3;
+			
+			boolean numeroFueraDeRango = false;
+			
+			for (int i = 0; i < 3 ; i++) {
+				if (notasAlumno[i] < 1.0 || notasAlumno[i] >10.0) {
+					numeroFueraDeRango = true;
+				}
+			}
+			
+			if (numeroFueraDeRango) {
+				JOptionPane.showMessageDialog(null, "Las notas deben ser del 1 al 10", "Error", JOptionPane.ERROR_MESSAGE);
+			}
+			else {
+				if(!cbTps.getSelectedItem().equals("Condicion")) {
+					if(cbTps.getSelectedItem().equals("Desaprobado")) {
+	    			txtCondicion.setText("Libre");        			
+		    		}
+		    		else if(Nota1<6 || Nota2<6 || Nota3<6) {		
+		    				txtCondicion.setText("Libre");	
+					}
+		    		else if(Nota1>=8 && Nota2>=8 && Nota3>=8) {
+		    			txtCondicion.setText("Promocionado");	
+					}
+		    		else if((Nota1>=6 && Nota1<=8) && (Nota2>=6 && Nota2<=8) && (Nota3>=6 && Nota3<=8) && cbTps.getSelectedItem().equals("Aprobado")) {
+		    			txtCondicion.setText("Regular");
+		    		}
+		    		else {
+		    			txtCondicion.setText("Regular");
+		    		}
+		    		double Promedio =((Nota1+Nota2+Nota3)/3);
+		    		String prom = String.format("%.2f", Promedio);
+		    		txtPromedio.setText(prom);
+		    		}
+				}
+			}
+    		catch(NumberFormatException exc) {
+    			  JOptionPane.showMessageDialog(null, "Ingresa valores válidos", "Error", JOptionPane.ERROR_MESSAGE);
+    			  txtNota1.setText("");
+    			  txtNota2.setText("");  
+    			  txtNota3.setText("");
+    		}
+	}
+	 private void LlenarComboBox() {
 	        DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
 	        model.addElement("Condicion");
 	        model.addElement("Aprobado");
 	        model.addElement("Desaprobado");
-	        cbTPS.setModel(model);
+	        cbTps.setModel(model);
 	        
-	        cbTPS.addActionListener(e -> {
-	            if (cbTPS.getSelectedIndex() != 0) {
+	        cbTps.addActionListener(e -> {
+	            if (cbTps.getSelectedIndex() != 0) {
 	                model.removeElement("Condicion");
 	            }
 	        });
