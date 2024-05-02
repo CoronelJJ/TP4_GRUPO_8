@@ -13,6 +13,8 @@ import javax.swing.JCheckBox;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
@@ -86,6 +88,7 @@ public class Ejercicio3 extends JFrame {
 		lblHoras.setBounds(10, 210, 232, 16);
 		contentPane.add(lblHoras);
 		
+		
 		txtHoras = new JTextField();
 		txtHoras.addKeyListener(new KeyAdapter() {
 			@Override
@@ -96,6 +99,20 @@ public class Ejercicio3 extends JFrame {
 				}
 			}
 		});
+		txtHoras.addFocusListener(new FocusListener() {
+			
+			@Override
+			public void focusGained(FocusEvent e) {
+				txtHoras.setBackground(Color.WHITE);
+				
+			}
+			
+			@Override
+			public void focusLost(FocusEvent e) {
+				// TODO Auto-generated method stub
+				
+			}} );
+		
 		txtHoras.setBounds(254, 207, 116, 22);
 		contentPane.add(txtHoras);
 		txtHoras.setColumns(10);
@@ -109,13 +126,16 @@ public class Ejercicio3 extends JFrame {
 					txtHoras.setText("");
 					campoIncompleto=true;}
 				
-				else {
-				txtHoras.setBackground(Color.white);
-				txtHoras.setText("");
-				MensajeEjercicio3 mensaje = new MensajeEjercicio3();
-				mensaje.setVisible(true);
-				
-			}
+				if(rdGrupo.getSelection() == null) {
+					campoIncompleto = true;
+				}
+			
+				if(!campoIncompleto) {
+					MensajeEjercicio3 mensaje = new MensajeEjercicio3();
+					mensaje.setVisible(true);
+					
+				}
+			
 			}
 		});
 		btnAceptar.setBounds(291, 259, 97, 25);
