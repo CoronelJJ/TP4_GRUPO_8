@@ -1,6 +1,5 @@
 package TP4;
 
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -9,10 +8,6 @@ import javax.swing.UIManager;
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 
 public class Ejercicio2 extends JFrame {
 
@@ -51,58 +46,19 @@ public class Ejercicio2 extends JFrame {
 		panelNotas.add(lblNota3);
 		
 		txtNota1 = new JTextField();
-		txtNota1.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyTyped(KeyEvent e) {
-					char c = e.getKeyChar();
-					if((c<'0' || c>'9')&& (c!='.')) {
-					e.consume();
-				}
-				
-			}
-		});
 		txtNota1.setBounds(86, 27, 119, 20);
 		panelNotas.add(txtNota1);
 		txtNota1.setColumns(10);
 		
 		txtNota2 = new JTextField();
-		txtNota2.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyTyped(KeyEvent e) {
-				char c = e.getKeyChar();
-				if((c<'0' || c>'9')&& (c!='.')) {
-				e.consume();
-				}
-			}
-		});
 		txtNota2.setBounds(86, 52, 119, 20);
 		panelNotas.add(txtNota2);
 		txtNota2.setColumns(10);
 		
 		txtNota3 = new JTextField();
-		txtNota3.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyTyped(KeyEvent e) {	
-				char c = e.getKeyChar();
-				if((c<'0' || c>'9')&& (c!='.')) {
-				e.consume();
-				}	
-			}
-		});
 		txtNota3.setBounds(86, 77, 119, 20);
 		panelNotas.add(txtNota3);
 		txtNota3.setColumns(10);
-		
-		JComboBox<String> cbTps = new JComboBox<>();
-		cbTps.addItem("Aprobado");
-		cbTps.addItem("Desaprobado");
-		cbTps.setBounds(86, 110, 119, 22);
-		panelNotas.add(cbTps);
-		LlenarComboBox(cbTps);
-		
-		JLabel lblTPS = new JLabel("TPS");
-		lblTPS.setBounds(30, 113, 56, 16);
-		panelNotas.add(lblTPS);
 		
 		JPanel panelPromedio = new JPanel();
 		panelPromedio.setBorder(new TitledBorder(null, "Notas del estudiante", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -110,51 +66,24 @@ public class Ejercicio2 extends JFrame {
 		contentPane.add(panelPromedio);
 		panelPromedio.setLayout(null);
 		
-		JLabel lblPromedio = new JLabel("Promedio:");
-		lblPromedio.setBounds(10, 24, 63, 14);
-		panelPromedio.add(lblPromedio);
+		JLabel lblNewLabel = new JLabel("Promedio:");
+		lblNewLabel.setBounds(10, 24, 63, 14);
+		panelPromedio.add(lblNewLabel);
 		
-		JLabel lblCondicion = new JLabel("Condicion:");
-		lblCondicion.setBounds(10, 49, 63, 14);
-		panelPromedio.add(lblCondicion);
+		JLabel lblNewLabel_1 = new JLabel("Condicion:");
+		lblNewLabel_1.setBounds(10, 49, 63, 14);
+		panelPromedio.add(lblNewLabel_1);
 		
 		txtPromedio = new JTextField();
-		lblPromedio.setLabelFor(txtPromedio);
+		lblNewLabel.setLabelFor(txtPromedio);
 		txtPromedio.setBounds(83, 21, 86, 20);
 		panelPromedio.add(txtPromedio);
 		txtPromedio.setColumns(10);
 		
 		txtCondicion = new JTextField();
-		lblCondicion.setLabelFor(txtCondicion);
+		lblNewLabel_1.setLabelFor(txtCondicion);
 		txtCondicion.setBounds(83, 46, 86, 20);
 		panelPromedio.add(txtCondicion);
 		txtCondicion.setColumns(10);
-		
-		JButton btnCalcular = new JButton("CALCULAR");
-		btnCalcular.setBounds(370, 43, 110, 30);
-		contentPane.add(btnCalcular);
-		
-		JButton btnNuevo = new JButton("NUEVO");
-		btnNuevo.setBounds(370, 84, 110, 30);
-		contentPane.add(btnNuevo);
-		
-		JButton btnSalir = new JButton("SALIR");
-		btnSalir.setBounds(370, 125, 110, 30);
-		contentPane.add(btnSalir);
 	}
-	
-	 private void LlenarComboBox(JComboBox<String> cbTPS) {
-	        DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
-	        model.addElement("Condicion");
-	        model.addElement("Aprobado");
-	        model.addElement("Desaprobado");
-	        cbTPS.setModel(model);
-	        
-	        cbTPS.addActionListener(e -> {
-	            if (cbTPS.getSelectedIndex() != 0) {
-	                model.removeElement("Condicion");
-	            }
-	        });
-	    }
-	
 }
