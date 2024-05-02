@@ -11,6 +11,9 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -131,10 +134,47 @@ public class Ejercicio2 extends JFrame {
 		txtCondicion.setColumns(10);
 		
 		JButton btnCalcular = new JButton("CALCULAR");
+		btnCalcular.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		int Nota1 = Integer.parseInt(txtNota1.getText());
+        		int Nota2 = Integer.parseInt(txtNota2.getText());
+        		int Nota3 = Integer.parseInt(txtNota3.getText());
+        	if(!cbTps.getSelectedItem().equals("Condicion")) {
+        		if(cbTps.getSelectedItem().equals("Desaprobado")) {
+        			txtCondicion.setText("Libre");        			
+        		}
+        		else if(Nota1<6 || Nota2<6 || Nota3<6) {		
+        				txtCondicion.setText("Libre");	
+    			}
+        		else if(Nota1>=8 && Nota2>=8 && Nota3>=8) {
+        			txtCondicion.setText("Promocionado");	
+    			}
+        		else if((Nota1>=6 && Nota1<=8) && (Nota2>=6 && Nota2<=8) && (Nota3>=6 && Nota3<=8) && cbTps.getSelectedItem().equals("Aprobado")) {
+        			txtCondicion.setText("Regular");
+        		}
+        		else {
+        			txtCondicion.setText("Regular");
+        		}
+        		int Promedio =((Nota1+Nota2+Nota3)/3);
+        		String Prom = String.valueOf(Promedio);
+        		txtPromedio.setText(Prom);
+        	}
+        	}
+        });
 		btnCalcular.setBounds(370, 43, 110, 30);
 		contentPane.add(btnCalcular);
 		
 		JButton btnNuevo = new JButton("NUEVO");
+		btnNuevo.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		txtNota1.setText("");
+        		txtNota2.setText("");
+        		txtNota3.setText("");
+        		txtCondicion.setText("");
+        		txtPromedio.setText("");  
+        		LlenarComboBox(cbTps);
+        	}
+        });
 		btnNuevo.setBounds(370, 84, 110, 30);
 		contentPane.add(btnNuevo);
 		
