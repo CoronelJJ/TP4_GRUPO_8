@@ -12,15 +12,19 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JRadioButton;
+import javax.swing.JCheckBox;
+import javax.swing.JTextField;
+import javax.swing.JButton;
 
 public class Ejercicio3 extends JFrame {
 
 	private JPanel contentPane;
+	private JTextField txtHoras;
 
 	public Ejercicio3() {
 		setTitle("Seleccion multiple");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 454, 300);
+		setBounds(100, 100, 454, 344);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -56,7 +60,7 @@ public class Ejercicio3 extends JFrame {
 		
 		JPanel panelEspecialidad = new JPanel();
 		panelEspecialidad.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panelEspecialidad.setBounds(10, 86, 408, 89);
+		panelEspecialidad.setBounds(10, 86, 408, 105);
 		contentPane.add(panelEspecialidad);
 		panelEspecialidad.setLayout(null);
 		
@@ -64,5 +68,30 @@ public class Ejercicio3 extends JFrame {
 		lbEspecialidad.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lbEspecialidad.setBounds(24, 32, 130, 23);
 		panelEspecialidad.add(lbEspecialidad);
+		
+		JCheckBox chckbxProgramacion = new JCheckBox("Programacion");
+		chckbxProgramacion.setBounds(191, 9, 113, 25);
+		panelEspecialidad.add(chckbxProgramacion);
+		
+		JCheckBox chckbxAdministracion = new JCheckBox("Administracion");
+		chckbxAdministracion.setBounds(191, 39, 113, 25);
+		panelEspecialidad.add(chckbxAdministracion);
+		
+		JCheckBox chckbxDsn = new JCheckBox("Dise\u00F1o Grafico");
+		chckbxDsn.setBounds(191, 69, 113, 25);
+		panelEspecialidad.add(chckbxDsn);
+		
+		JLabel lblHoras = new JLabel("Cantidad de horas en el computador:");
+		lblHoras.setBounds(10, 210, 232, 16);
+		contentPane.add(lblHoras);
+		
+		txtHoras = new JTextField();
+		txtHoras.setBounds(254, 207, 116, 22);
+		contentPane.add(txtHoras);
+		txtHoras.setColumns(10);
+		
+		JButton btnAceptar = new JButton("Aceptar");
+		btnAceptar.setBounds(291, 259, 97, 25);
+		contentPane.add(btnAceptar);
 	}
 }
